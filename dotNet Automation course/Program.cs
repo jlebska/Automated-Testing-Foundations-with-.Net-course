@@ -1,12 +1,12 @@
 ﻿using System.Text;
 
-class FirstTask
+class SecondTask
 {
     static void Main(string[] args)
     {
         if (args.Length < 2)
         {
-            Console.WriteLine("Not enough numbers provided. Start the program again while prowiding a decimal number and a new base in the range 2-20");
+            Console.WriteLine("Not enough numbers provided. Start the program again while providing a decimal number and a new base in the range 2-20");
         }
         else
         {
