@@ -26,8 +26,8 @@ namespace dotNet_Automation_course
             truck1.getDescription();
 
             Bus bus1 = new Bus("Different name");
-            bus1.getDescription()
-                ;
+            bus1.getDescription();
+
             Scooter scooter1 = new Scooter();
             scooter1.getDescription();
             scooter1.Transmission = passengerCar1.Transmission;
