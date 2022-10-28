@@ -14,24 +14,19 @@ namespace dotNet_Automation_course
              * 
              * I don't know anything about cars so all the values are completely random.
             */
-            PassengerCar passengerCar1 = new PassengerCar(); 
-            Truck truck1 = new Truck();
 
-            passengerCar1.getDescription();
-            passengerCar1.Transmission.Manufacturer = "Changed Manufacturer";
-            passengerCar1.getDescription();
+            Vehicle[] vehicles = new Vehicle[4];
 
-            truck1.getDescription();
-            truck1.Engine = new Engine(258.8, 123, "New Engine Type", "ABC124");
-            truck1.getDescription();
+            vehicles[0] = new PassengerCar(250);
+            vehicles[1] = new Truck(25900);
+            vehicles[2] = new Bus(false);
+            vehicles[3] = new Scooter(true);
 
-            Bus bus1 = new Bus("Different name");
-            bus1.getDescription();
+            foreach(Vehicle vehicle in vehicles)
+            {
+                vehicle.printDescription();
+            }
 
-            Scooter scooter1 = new Scooter();
-            scooter1.getDescription();
-            scooter1.Transmission = passengerCar1.Transmission;
-            scooter1.getDescription();
         }
     }
 }

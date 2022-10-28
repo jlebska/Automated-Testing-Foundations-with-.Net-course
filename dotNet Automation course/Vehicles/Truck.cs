@@ -4,8 +4,21 @@ namespace dotNet_Automation_course.Vehicles
 {
     class Truck : Vehicle
     {
-        public Truck(string name = "Truck")
+        public int MonthlyKmLimit
+        {
+            get; set; 
+        }
+        public Truck(int monthlyKmLimit, string name = "Truck")
             :base(name, new Engine(89.0, 200.0, "Truck", "Anshkl"), new Chassis(8, "67890gj", 200000), new Transmission("qwerty", 6, "Truck manufacturer"))
-        {}
+        {
+            MonthlyKmLimit = monthlyKmLimit;
+        }
+
+        public override void printDescription()
+        {
+            base.printDescription();
+            Console.WriteLine($"Monthly km limit for the truck is equal to {MonthlyKmLimit}. \n" +
+                "-------------------------------------------------------------------------");
+        }
     }
 }

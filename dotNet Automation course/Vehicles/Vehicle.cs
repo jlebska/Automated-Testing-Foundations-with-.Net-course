@@ -24,7 +24,7 @@ namespace dotNet_Automation_course.Vehicles
             get; set;
         }
 
-        public void getDescription()
+        virtual public void printDescription()
         {
             Console.WriteLine($"The vehicle type is {Name}.\n" +
                 $"The parameter of its engine are: \n" +
@@ -38,8 +38,7 @@ namespace dotNet_Automation_course.Vehicles
                 $"The parameters of its transmission are: \n" +
                 $"- type: {Transmission.TransmissionType}, \n" +
                 $"- number of gears: {Transmission.NumberOfGears}, \n" +
-                $"- manufacturer: {Transmission.Manufacturer}. \n" +
-                "----------------------------------------------------");
+                $"- manufacturer: {Transmission.Manufacturer}.");
         }
 
         public Vehicle(string name, Engine engine, Chassis chassis, Transmission transmission)
