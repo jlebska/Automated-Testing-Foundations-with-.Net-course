@@ -12,11 +12,8 @@ namespace dotNet_Automation_course
             Console.WriteLine(time1);            
             
             Airplane airplane = new();
-
             double time2 = airplane.GetFlyTime(new Point(0,18,0));
             Console.WriteLine(time2);
-            
-
             
             Drone drone = new();
             double time3 = drone.GetFlyTime(new Point(0, 0, 1));
