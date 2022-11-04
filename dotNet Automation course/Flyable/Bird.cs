@@ -20,10 +20,10 @@ namespace dotNet_Automation_course.Flyable
         The class takes a starting point, which default value is (0,0,0) for the constructor.
         The value of the speed is equal to a random number between 1 and 20 km/h.
          */
-        public Bird(int x = 0, int y = 0, int z = 0)
+        public Bird(Point point)
         {
             Speed = new Random().Next(1, 20);
-            Position = new Point(x,y,z);
+            Position = point;
         }
 
         // Method to fly to a specified point, with a [-1,1] margin of error. (Birds aren't always very precise while landing)

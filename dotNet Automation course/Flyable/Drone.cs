@@ -26,10 +26,10 @@
         The class takes a speed and the coordinates of a starting point of a drone for the constructor. 
         The default value of speed is equal to 5[km/h] and default starting point is (0,0,0)
         */
-        public Drone(double speed=5, int x = 0, int y = 0, int z = 0)
+        public Drone(Point point, double speed= 5)
         {
             Speed = speed;
-            Position = new Point(x, y, z);
+            Position = point;
             KmTraveled = 0;
         }
 

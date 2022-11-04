@@ -27,10 +27,10 @@ namespace dotNet_Automation_course.Flyable
          The default starting point is (0,0,0) and the speed is equal to 200 km/h.
          It also gets a random boolean to stimulate weather conditions.
          */
-        public Airplane(int x = 0, int y = 0, int z = 0)
+        public Airplane(Point point)
         {
             Speed = 200; //[km/h]
-            Position = new Point(x, y, z);
+            Position = point;
             IsWeatherNice = new Random().Next(2)==1; 
         }
 

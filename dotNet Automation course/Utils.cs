@@ -1,7 +1,7 @@
 ﻿
 namespace dotNet_Automation_course
 {
-    class Utils
+    abstract class Utils
     {
         // Method to calculate a distance between two points
         public static double CalculateDistance(Point point1, Point point2)

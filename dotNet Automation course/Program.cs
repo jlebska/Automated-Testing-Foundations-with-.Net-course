@@ -7,15 +7,15 @@ namespace dotNet_Automation_course
     {
         static void Main(string[] args)
         {
-            Bird bird = new();
+            Bird bird = new(new Point(0,0,0));
             double time1 = bird.GetFlyTime(new Point(2, 0, 0));
             Console.WriteLine(time1);            
             
-            Airplane airplane = new();
+            Airplane airplane = new(new Point(0, 0, 0));
             double time2 = airplane.GetFlyTime(new Point(0,18,0));
             Console.WriteLine(time2);
             
-            Drone drone = new();
+            Drone drone = new(new Point(0, 0, 0));
             double time3 = drone.GetFlyTime(new Point(0, 0, 1));
             Console.WriteLine(time3);
         }
