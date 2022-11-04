@@ -2,24 +2,11 @@
 
 namespace dotNet_Automation_course.Flyable
 {
-    class Airplane : IFlyable
+    class Airplane : BaseFlyable
     {
-        public double Speed
-        {
-            get; set;
-        }
-        public Point Position
-        {
-            get; set;
-        }
-
         public bool IsWeatherNice
         {
             get;
-        }
-        double LastTraveledDistance
-        {
-            get; set;
         }
 
         /*
@@ -35,11 +22,11 @@ namespace dotNet_Automation_course.Flyable
         }
 
         // Method to fly to a specified point if the weather conditions are good.
-        public bool FlyTo(Point coordinates)
+        public override bool FlyTo(Point coordinates)
         {
             if (!IsWeatherNice)
             {
-                LastTraveledDistance = Utils.CalculateDistance(coordinates, Position);
+                LastTraveledDistance = CalculateDistance(coordinates, Position);
 
                 Position.X = Position.X + coordinates.X;
                 Position.Y = Position.Y + coordinates.Y;
@@ -55,7 +42,7 @@ namespace dotNet_Automation_course.Flyable
         }
 
         // Method that flies to a specified point and returns a time that it will take if the airplane accelerates by 10 km/h every 10 km.
-        public double GetFlyTime(Point coordinates)
+        public override double GetFlyTime(Point coordinates)
         {
             bool wasSuccesfull = FlyTo(coordinates);
             if (wasSuccesfull)

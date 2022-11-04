@@ -1,23 +1,10 @@
 ﻿namespace dotNet_Automation_course.Flyable
 {
-    class Drone : IFlyable
+    class Drone : BaseFlyable
     {
         // A drone has a limit of km that it can fly. If flying to a point would reach that limit, it doesn't fly and returns an appropriate message
         const int kmLimit = 1000;
-        public double Speed 
-        {
-            get;set;
-        }
-        public Point Position
-        {
-            get; set;
-        }
         public double KmTraveled
-        {
-            get; set;
-        }
-
-        double LastTraveledDistance
         {
             get; set;
         }
@@ -34,12 +21,12 @@
         }
 
         // Method to fly to a specified point if the action would't cause reaching the km limit.
-        public bool FlyTo(Point coordinates)
+        public override bool FlyTo(Point coordinates)
         {
-            if (KmTraveled + Utils.CalculateDistance(coordinates, Position) < kmLimit)
+            if (KmTraveled + CalculateDistance(coordinates, Position) < kmLimit)
             {
-                KmTraveled += Utils.CalculateDistance(coordinates, Position);
-                LastTraveledDistance = Utils.CalculateDistance(coordinates, Position);
+                KmTraveled += CalculateDistance(coordinates, Position);
+                LastTraveledDistance = CalculateDistance(coordinates, Position);
 
                 Position.X = Position.X + coordinates.X;
                 Position.Y = Position.Y + coordinates.Y;
@@ -56,7 +43,7 @@
         }
 
         // Method that flies to a specified point and returns a time that it will take if the drone hovers in the air for 1 minute, every 10 minutes
-        public double GetFlyTime(Point coordinates)
+        public override double GetFlyTime(Point coordinates)
         {
             bool wasSuccesfull = FlyTo(coordinates);
             if (wasSuccesfull)
