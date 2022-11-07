@@ -1,4 +1,5 @@
 ﻿using dotNet_Automation_course.VehicleParts;
+using System.Xml.Linq;
 
 namespace dotNet_Automation_course.Vehicles
 {
@@ -24,6 +25,25 @@ namespace dotNet_Automation_course.Vehicles
             get; set;
         }
 
+        public string AdditionalInfo
+        {
+            get; set;
+        }
+
+        public XElement PartialXML
+        {
+            get
+            {
+                return new XElement(
+                    Name,
+                    Engine.PartialXML,
+                    Chassis.PartialXML,
+                    Transmission.PartialXML,
+                    new XElement("AdditionalInfo", AdditionalInfo)
+                    );
+            }
+        }
+
         virtual public void printDescription()
         {
             Console.WriteLine($"The vehicle type is {Name}.\n" +
@@ -38,7 +58,8 @@ namespace dotNet_Automation_course.Vehicles
                 $"The parameters of its transmission are: \n" +
                 $"- type: {Transmission.TransmissionType}, \n" +
                 $"- number of gears: {Transmission.NumberOfGears}, \n" +
-                $"- manufacturer: {Transmission.Manufacturer}.");
+                $"- manufacturer: {Transmission.Manufacturer}, \n" +
+                $"{AdditionalInfo}.");
         }
 
         public Vehicle(string name, Engine engine, Chassis chassis, Transmission transmission)

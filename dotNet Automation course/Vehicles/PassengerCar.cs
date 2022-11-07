@@ -1,4 +1,6 @@
 ﻿using dotNet_Automation_course.VehicleParts;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace dotNet_Automation_course.Vehicles
 {
@@ -8,17 +10,12 @@ namespace dotNet_Automation_course.Vehicles
         {
             get; set;
         }
-        public PassengerCar(int trunkVolume, string name = "Passenger car")
-            :base(name, new Engine(12.0, 18.0, "Passenger", "123567"), new Chassis(4, "45678", 2000), new Transmission("Car Transmission default", 6, "Company"))
+
+        public PassengerCar(int trunkVolume, string name = "PassengerCar")
+            :base(name, new Engine(12.0, 18.0, "Passenger", "123567"), new Chassis(4, "45678", 2000), new Transmission("zxcvb", 6, "Company"))
         {
             TrunkVolume = trunkVolume;
-        }
-
-        public override void printDescription()
-        {
-            base.printDescription();
-            Console.WriteLine($"Trunk volume for the car is equal to {TrunkVolume}. \n" +
-                "-------------------------------------------------------------------------");
+            AdditionalInfo = $"Trunk volume for the car is equal to {TrunkVolume}.";
         }
     }
 }

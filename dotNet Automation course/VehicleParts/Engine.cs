@@ -1,4 +1,6 @@
 ﻿
+using System.Xml.Linq;
+
 namespace dotNet_Automation_course.VehicleParts
 {
     class Engine
@@ -21,6 +23,18 @@ namespace dotNet_Automation_course.VehicleParts
         public string SerialNumber
         {
             get; set;
+        }
+
+        public XElement PartialXML
+        {
+            get 
+            { 
+                return new XElement("Engine",
+                new XElement("Power", Power),
+                new XElement("Volume", Volume),
+                new XElement("EngineType", EngineType),
+                new XElement("SerialNumber", SerialNumber)); 
+            }
         }
 
         public Engine(double power, double volume, string engineType, string seialNumber)

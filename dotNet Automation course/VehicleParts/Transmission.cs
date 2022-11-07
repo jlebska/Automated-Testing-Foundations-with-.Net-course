@@ -1,4 +1,6 @@
 ﻿
+using System.Xml.Linq;
+
 namespace dotNet_Automation_course.VehicleParts
 {
     class Transmission
@@ -16,6 +18,17 @@ namespace dotNet_Automation_course.VehicleParts
         public string Manufacturer
         {
             get; set;
+        }
+
+        public XElement PartialXML
+        {
+            get
+            {
+                return new XElement("Transmission",
+                    new XElement("TransmissionType", TransmissionType),
+                    new XElement("NumberOfGears", NumberOfGears),
+                    new XElement("Manufacturer", Manufacturer));
+            }
         }
 
         public Transmission(string transmissionType, int numberOfGears, string manufacturer)
