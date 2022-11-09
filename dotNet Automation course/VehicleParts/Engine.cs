@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace dotNet_Automation_course.VehicleParts
 {
-    class Engine
+    public class Engine
     {
         public double Power
         {

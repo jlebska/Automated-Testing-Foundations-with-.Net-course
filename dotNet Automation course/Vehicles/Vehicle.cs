@@ -1,11 +1,17 @@
-﻿using dotNet_Automation_course.VehicleParts;
+﻿using dotNet_Automation_course.CustomExceptions;
+using dotNet_Automation_course.VehicleParts;
 using System.Xml.Linq;
 
 namespace dotNet_Automation_course.Vehicles
 {
-    abstract class Vehicle
+    public abstract class Vehicle
     {
         public string Name
+        {
+            get; set;
+        }
+
+        public string Model
         {
             get; set;
         }
@@ -36,6 +42,7 @@ namespace dotNet_Automation_course.Vehicles
             {
                 return new XElement(
                     Name,
+                    Model,
                     Engine.PartialXML,
                     Chassis.PartialXML,
                     Transmission.PartialXML,
@@ -46,7 +53,7 @@ namespace dotNet_Automation_course.Vehicles
 
         virtual public void printDescription()
         {
-            Console.WriteLine($"The vehicle type is {Name}.\n" +
+            Console.WriteLine($"The vehicle type is {Name} {Model}.\n" +
                 $"The parameter of its engine are: \n" +
                 $"- engine type: {Engine.EngineType},\n" +
                 $"- power: {Engine.Power},\n" +
@@ -62,9 +69,14 @@ namespace dotNet_Automation_course.Vehicles
                 $"{AdditionalInfo}.");
         }
 
-        public Vehicle(string name, Engine engine, Chassis chassis, Transmission transmission)
+        public Vehicle(string name, string model, Engine engine, Chassis chassis, Transmission transmission)
         {
+            if (name == null || model == null)
+            {
+                throw new InitializationException($"Intialization impossible, because parameter {(name == null ? "name" : "model")} is null"); //TODO
+            }
             Name = name;
+            Model = model;
             Engine = engine;
             Chassis = chassis;
             Transmission = transmission;

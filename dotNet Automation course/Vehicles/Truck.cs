@@ -8,8 +8,8 @@ namespace dotNet_Automation_course.Vehicles
         {
             get; set; 
         }
-        public Truck(int monthlyKmLimit, string name = "Truck")
-            :base(name, new Engine(89.0, 200.0, "Truck", "Anshkl"), new Chassis(8, "67890gj", 200000), new Transmission("qwerty", 6, "Truck manufacturer"))
+        public Truck(int monthlyKmLimit, string name = "Truck", string model = "TruckModel")
+            :base(name, model, new Engine(89.0, 200.0, "Truck", "Anshkl"), new Chassis(8, "67890gj", 200000), new Transmission("qwerty", 6, "Truck manufacturer"))
         {
             MonthlyKmLimit = monthlyKmLimit;
             AdditionalInfo = $"Monthly km limit for the truck is equal to {MonthlyKmLimit}.";

@@ -8,8 +8,8 @@ namespace dotNet_Automation_course.Vehicles
         {
             get; set; 
         } 
-        public Scooter(bool hasPhoneHolder, string name = "Scooter") 
-            : base(name, new Engine(4.9, 0.8, "Scooter", "zxcvb"), new Chassis(8, "OPASD", 100), new Transmission("zxcvb", 6, "Scooter transmission Company"))
+        public Scooter(bool hasPhoneHolder, string name = "Scooter", string model ="ScooterModel") 
+            : base(name, model, new Engine(4.9, 0.8, "Scooter", "zxcvb"), new Chassis(8, "OPASD", 100), new Transmission("zxcvb", 6, "Scooter transmission Company"))
         {
             HasPhoneHolder = hasPhoneHolder;
             AdditionalInfo = $"The scooter {(HasPhoneHolder ? "has" : "doesn't have")} a phone holder.";

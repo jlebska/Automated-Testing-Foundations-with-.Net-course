@@ -11,8 +11,8 @@ namespace dotNet_Automation_course.Vehicles
             get; set;
         }
 
-        public PassengerCar(int trunkVolume, string name = "PassengerCar")
-            :base(name, new Engine(12.0, 18.0, "Passenger", "123567"), new Chassis(4, "45678", 2000), new Transmission("zxcvb", 6, "Company"))
+        public PassengerCar(int trunkVolume, string name = "PassengerCar", string model = "CarModel")
+            :base(name, model, new Engine(12.0, 18.0, "Passenger", "123567"), new Chassis(4, "45678", 2000), new Transmission("zxcvb", 6, "Company"))
         {
             TrunkVolume = trunkVolume;
             AdditionalInfo = $"Trunk volume for the car is equal to {TrunkVolume}.";

@@ -7,8 +7,8 @@ namespace dotNet_Automation_course.Vehicles
         public bool HasTicketMachine { 
             get; set; 
         }
-        public Bus(bool hasTicketMachine, string name = "Bus")
-            : base(name, new Engine(50, 100, "Bus", "qwerty"), new Chassis(8, "QWERFG", 20000),  new Transmission("zxcvb", 6, "Company Bus"))
+        public Bus(bool hasTicketMachine, string name = "Bus" , string model = "BusModel")
+            : base(name, model, new Engine(50, 100, "Bus", "qwerty"), new Chassis(8, "QWERFG", 20000),  new Transmission("zxcvb", 6, "Company Bus"))
         {
             HasTicketMachine = hasTicketMachine;
             AdditionalInfo = $"The bus {(HasTicketMachine ? "has" : "doesn't have")} a ticket machine.";
