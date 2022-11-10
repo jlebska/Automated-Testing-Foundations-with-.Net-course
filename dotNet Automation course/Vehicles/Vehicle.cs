@@ -73,7 +73,7 @@ namespace dotNet_Automation_course.Vehicles
         {
             if (name == null || model == null)
             {
-                throw new InitializationException($"Intialization impossible, because parameter {(name == null ? "name" : "model")} is null"); //TODO
+                throw new InitializationException("Intialization impossible, neither of parameters name or model can be null.");
             }
             Name = name;
             Model = model;

@@ -7,7 +7,7 @@ namespace dotNet_Automation_course
 {
     public class CarPark
     {
-        public Dictionary<string,Vehicle> ListOfAvaibleVehicles
+        public Dictionary<string,Vehicle> VehicleLog
         {
             get;set;
         }
@@ -16,7 +16,7 @@ namespace dotNet_Automation_course
 
         public CarPark()
         {
-            ListOfAvaibleVehicles = new Dictionary<string,Vehicle>();
+            VehicleLog = new Dictionary<string,Vehicle>();
         }
 
         public void AddVehicle(Vehicle vehicle, string? id =null)
@@ -28,7 +28,7 @@ namespace dotNet_Automation_course
                     id = defaultId.ToString();
                     defaultId++;
                 }
-                ListOfAvaibleVehicles.Add(id, vehicle);
+                VehicleLog.Add(id, vehicle);
             }
             catch(ArgumentException e)
             {
@@ -36,12 +36,62 @@ namespace dotNet_Automation_course
             }
         }
 
-        public int GetAutoByParameter(string parameter, string value)
+        public List<Vehicle> GetAutoByParameter(string parameter, string value)
         {
+            List<Vehicle> vehicles = VehicleLog.Values.ToList();
+            List<Vehicle> found = new List<Vehicle>();
+            PropertyInfo? property = null;
 
-            var selected = ListOfAvaibleVehicles.Values.SelectMany(v => v.GetType().GetProperties()).Where(p => p.Name.Equals(parameter) && p.GetValue(parameter).Equals(value)).Count();
+            foreach (Vehicle vehicle in vehicles)
+            {
+                property = vehicle.GetType().GetProperty(parameter);
+                if(property != null)
+                {
+                    if (property.GetValue(vehicle).ToString().Equals(value))
+                    {
+                        found.Add(vehicle);
+                    }
+                }
+            }
 
-            return selected;
+            if (found.Count == 0)
+            {
+                if (property == null)
+                {
+                    throw new GetAutoByParameterException($"Provided parameter \"{parameter}\" doesn't exist in the scope.");
+                }
+                else
+                {
+                    throw new GetAutoByParameterException($"No vehicle with the value of the parameter \"{parameter}\" equal to \"{value}\".");
+                }
+            }
+
+            return found;
+        }
+
+        public void UpdateAuto(string id, Vehicle vehicle)
+        {
+            if (VehicleLog.ContainsKey(id))
+            {
+                VehicleLog[id] = vehicle;
+            }
+            else
+            {
+                throw new UpdateAutoException($"No vehicle with provided id={id}.");
+            }
+        }
+
+
+        public void RemoveAuto(string id)
+        {
+            if (VehicleLog.ContainsKey(id))
+            {
+                VehicleLog.Remove(id);
+            }
+            else
+            {
+                throw new RemoveAutoException($"No vehicle with provided id={id}.");
+            }
         }
 
 
