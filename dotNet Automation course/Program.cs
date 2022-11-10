@@ -1,7 +1,6 @@
 ﻿
 using dotNet_Automation_course.CustomExceptions;
 using dotNet_Automation_course.Vehicles;
-using System.Xml.Linq;
 
 namespace dotNet_Automation_course
 {
