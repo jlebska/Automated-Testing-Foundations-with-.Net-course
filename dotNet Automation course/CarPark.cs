@@ -1,4 +1,6 @@
-﻿namespace dotNet_Automation_course
+﻿using System.Diagnostics.Metrics;
+
+namespace dotNet_Automation_course
 {
     public class CarPark
     {
@@ -20,12 +22,40 @@
 
         }
 
-        public void AddCar(Car car, int quantity=1)
+        public bool AddCar(string input)
         {
-            for (int i = 0; i < quantity; i++)
+            bool success = false;
+            int counter = 0;
+            while (!success && counter < 3)
             {
-                cars.Add(car);
+                if (input.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    break;
+                }
+                try
+                {
+                    String[] result = input.Split(" ");
+                    Car car = new Car(result[0], result[1], Int32.Parse(result[2]));
+                    for (int i = 0; i < Int32.Parse(result[3]); i++)
+                    {
+                        cars.Add(car);
+                    }
+                    success = true;
+                }
+                catch (Exception ex) when (ex is FormatException || ex is IndexOutOfRangeException)
+                {
+                    counter++;
+                    Console.WriteLine("Wrong input \n" +
+                        "Write the brand, model, price and quantity of cars you want to add to the list, separating the values by spaces");
+                    input = Console.ReadLine();
+                }
             }
+            return success;
+        }
+
+        public List<string> GetBrands()
+        {
+            return cars.Select(c => c.Brand).Distinct().ToList();
         }
 
         public double CountTypes()

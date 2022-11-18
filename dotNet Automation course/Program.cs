@@ -6,86 +6,121 @@ class SeventhTask
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Write the brand, model, price and quantity of cars you want to add to the list");
-        string? input = Console.ReadLine();
+        Console.WriteLine("Write the brand, model, price and quantity of cars you want to add to the list or type \"exit\" to exit application.");
 
-        String[] result = input.Split(" ");
-        CarPark.GetInstance().AddCar(new Car(result[0], result[1], Int32.Parse(result[2])), Int32.Parse(result[3]));
+        string? input = Console.ReadLine(); ;
 
+        bool success = CarPark.GetInstance().AddCar(input);
 
+        if (!success)
+        {
+            Environment.Exit(0);
+        }
+
+        Console.WriteLine("What do you want to do now? \n" +
+        "Write 0 to add more cars, 1 to go to commands or type \"exit\" to exit the application.");
+        input = Console.ReadLine();
 
         while (true)
         {
-            Console.WriteLine("What do you want to do now? \n" +
-            "Write 0 to add more cars, 1 to go to commands or exit to exit the application.");
-            input = Console.ReadLine();
             if (input.Equals("exit"))
             {
-                break;
+                Environment.Exit(0);
             }
             else
-            { 
-                if (Int32.Parse(input) == 0)
+            {
+                success = Int32.TryParse(input, out int parsedInput);
+                if (success)
                 {
-                    Console.WriteLine("Write the brand, model, price and quantity of cars you want to add to the list");
-                    input = Console.ReadLine();
-                    String[] carParams = input.Split(" ");
-                    CarPark.GetInstance().AddCar(new Car(carParams[0], carParams[1], Int32.Parse(carParams[2])), Int32.Parse(carParams[3]));
-                } 
-                else if (Int32.Parse(input) == 1)
-                {
-                    Console.WriteLine("What command do you want to execute?");
-                    input = Console.ReadLine();
-                    ICommand command;
+                    if (parsedInput == 0)
+                    {
+                        Console.WriteLine("Write the brand, model, price and quantity of cars you want to add to the list or type \"exit\" to exit application.");
+                        input = Console.ReadLine();
+                        success = CarPark.GetInstance().AddCar(input);
 
-                    switch (input)
-                    {
-                        case "Count all":
-                            command = new CountAllCommand(CarPark.GetInstance());
-                            break;
-                        case "Count types":
-                            command = new CountTypesCommand(CarPark.GetInstance());
-                            break;
-                        case "Average price":
-                            command = new AvgPriceCommand(CarPark.GetInstance());
-                            break;
-                        case "Average price type":
-                            Console.WriteLine("For which brand do you want to get average price?");
-                            string? brand = Console.ReadLine();
-                            command = new AvgPricePerBrandCommand(CarPark.GetInstance(),brand);
-                            break;
-                        default:
-                            command = null;
-                            break;
+                        if (!success)
+                        {
+                            Environment.Exit(0);
+                        }
                     }
-                    if (command != null)
+                    else if (parsedInput == 1)
                     {
-                        Console.WriteLine(command.Execute());
+                        Console.WriteLine("What command do you want to execute?\n" +
+                            "Write \"Count all\" to get the number of all cars in the list,\n" +
+                            "Write \"Count types\" to get the number of all brands of cars in the list,\n" +
+                            "Write \"Average price\" to get the average price of cars in the list\n" +
+                            "Write \"Average price type\" to get the average price for a given brand of the car\n" +
+                            "and in the next step provide the brand name.\n" +
+                            "To exit the application write \"exit\".");
+                        input = Console.ReadLine();
+                        ICommand? command = null;
+
+                        switch (input)
+                        {
+                            case "Count all":
+                                command = new CountAllCommand(CarPark.GetInstance());
+                                break;
+                            case "Count types":
+                                command = new CountTypesCommand(CarPark.GetInstance());
+                                break;
+                            case "Average price":
+                                command = new AvgPriceCommand(CarPark.GetInstance());
+                                break;
+                            case "Average price type":
+
+                                Console.WriteLine("For which brand do you want to get average price?\n" +
+                                    "The brands in the list are:");
+                                List<string> brands = CarPark.GetInstance().GetBrands();
+                                foreach(string brand in brands)
+                                {
+                                    Console.WriteLine(brand);
+                                }
+                                string? choosenBrand = Console.ReadLine();
+                                if (choosenBrand.Equals("exit", StringComparison.InvariantCultureIgnoreCase))
+                                {
+                                    Environment.Exit(0);
+                                }
+                                else if (brands.Contains(choosenBrand))
+                                {
+                                    command = new AvgPricePerBrandCommand(CarPark.GetInstance(), choosenBrand);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Choosen brand doesn't exist in the list");
+                                    input = "1";
+                                }
+                                break;
+                            case "exit":
+                                Environment.Exit(0);
+                                break;
+                            default:
+                                Console.WriteLine("Non existent command\n" +
+                                    "Write a valid one");
+                                input = "1";
+                                break;
+                        }
+                        if (command != null)
+                        {
+                            Console.WriteLine(command.Execute());
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
                     else
                     {
-                        continue;
+                        Console.WriteLine("Wrong input, provide a valid one");
                     }
                 }
+                else
+                {
+                    Console.WriteLine("Wrong input, provide a valid one");
+                }
             }
+            Console.WriteLine("What do you want to do now? \n" +
+            "Write 0 to add more cars, 1 to go to commands or \"exit\" to exit the application.");
+            input = Console.ReadLine();
         }
-
-        
-        /*
-        CarPark carPark = CarPark.GetInstance();
-
-        carPark.AddCar(new Car("Citroen", "C4 Picasso", 23456),2);
-        carPark.AddCar(new Car("Fiat", "125p", 123), 1);
-        carPark.AddCar(new Car("Volvo", "ABC", 567), 3);
-
-        Console.WriteLine(carPark.CountAll());
-
-        CarPark carPark2 = CarPark.GetInstance();
-
-        carPark2.AddCar(new Car("Opel", "Astra", 888), 1);
-
-        Console.WriteLine(carPark2.CountAll());
-        */
-
     }
 }
