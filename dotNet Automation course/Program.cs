@@ -53,18 +53,22 @@ class SeventhTask
                             "and in the next step provide the brand name.\n" +
                             "To exit the application write \"exit\".");
                         input = Console.ReadLine();
-                        ICommand? command = null;
+                        Invoker invoker = new Invoker();
+                        bool isCommandSet = false;
 
                         switch (input)
                         {
                             case "Count all":
-                                command = new CountAllCommand(CarPark.GetInstance());
+                                invoker.SetCommand(new CountAllCommand(CarPark.GetInstance()));
+                                isCommandSet = true;
                                 break;
                             case "Count types":
-                                command = new CountTypesCommand(CarPark.GetInstance());
+                                invoker.SetCommand(new CountTypesCommand(CarPark.GetInstance()));
+                                isCommandSet = true;
                                 break;
                             case "Average price":
-                                command = new AvgPriceCommand(CarPark.GetInstance());
+                                invoker.SetCommand(new AvgPriceCommand(CarPark.GetInstance()));
+                                isCommandSet = true;
                                 break;
                             case "Average price type":
 
@@ -82,7 +86,8 @@ class SeventhTask
                                 }
                                 else if (brands.Contains(choosenBrand))
                                 {
-                                    command = new AvgPricePerBrandCommand(CarPark.GetInstance(), choosenBrand);
+                                    invoker.SetCommand(new AvgPricePerBrandCommand(CarPark.GetInstance(), choosenBrand));
+                                    isCommandSet = true;
                                 }
                                 else
                                 {
@@ -99,9 +104,9 @@ class SeventhTask
                                 input = "1";
                                 break;
                         }
-                        if (command != null)
+                        if (isCommandSet)
                         {
-                            Console.WriteLine(command.Execute());
+                            Console.WriteLine(invoker.ExecuteCommand());
                         }
                         else
                         {
