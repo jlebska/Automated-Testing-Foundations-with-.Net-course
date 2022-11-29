@@ -1,6 +1,5 @@
-﻿using System.Text;
-
-class FirstTask
+﻿using dotNet_Automation_course;
+public class EighthTask
 {
     static void Main(string[] args)
     {
@@ -8,46 +7,9 @@ class FirstTask
         foreach (string arg in args)
         {
             str = arg.ToLower();
-            Console.WriteLine($"Max number of unequal consecutive characters in \"{arg}\" is equal to {CountUnequalChar(str)}.");
+            CharCounter counter = new CharCounter();
+            Console.WriteLine($"Max number of counted consecutive characters in \"{arg}\" is equal to {counter.CountUnequalChar(str)}.");
         }
 
-    }
-
-    static string DeletePunctuationAndSpaces(string str)
-    {
-        var sb = new StringBuilder();
-        foreach (char ch in str)
-        {
-            if (!char.IsPunctuation(ch) && !char.IsWhiteSpace(ch))
-                sb.Append(ch);
-        }
-        return sb.ToString();
-    }
-
-    static int CountUnequalChar(string str)
-    {
-        string input = DeletePunctuationAndSpaces(str);
-        int count = 1;
-        int max = 1;
-
-        for(int i = 1; i < input.Length; i++)
-        {
-            if (input.Length > 1)
-            {
-                if (input[i - 1] != input[i])
-                {
-                    count++;
-                }
-                else
-                {
-                    if (count > max)
-                    {
-                        max = count;
-                    }
-                    count = 1;
-                }
-            }
-        }
-        return max >= count ? max : count;
-    }
+    } 
 }
