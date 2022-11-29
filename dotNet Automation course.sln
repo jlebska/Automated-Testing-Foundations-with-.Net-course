@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNet Automation course", "dotNet Automation course\dotNet Automation course.csproj", "{44AA27E7-E96A-4F22-A602-AD7814C0027B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotNet Automation course", "dotNet Automation course\dotNet Automation course.csproj", "{44AA27E7-E96A-4F22-A602-AD7814C0027B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotNet Automation course Tests", "dotNet Automation courseTests\dotNet Automation course Tests.csproj", "{817512B1-6AA5-4CF2-84DB-C2620C9E038D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{44AA27E7-E96A-4F22-A602-AD7814C0027B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44AA27E7-E96A-4F22-A602-AD7814C0027B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{44AA27E7-E96A-4F22-A602-AD7814C0027B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{817512B1-6AA5-4CF2-84DB-C2620C9E038D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{817512B1-6AA5-4CF2-84DB-C2620C9E038D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{817512B1-6AA5-4CF2-84DB-C2620C9E038D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{817512B1-6AA5-4CF2-84DB-C2620C9E038D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
